@@ -1,7 +1,10 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 const LoginPage = () => {
+    //@ts-ignore
     const [badLogin, setStateOfLogin] = useState(false);
+    document.title = "Log In | TODO App";
     return (
         <div className="login w-11/12 ml-auto mr-auto mt-20">
             <h1 className="text-center text-5xl mb-10">TODO App</h1>
@@ -21,7 +24,7 @@ const LoginPage = () => {
                         <button className="transition ease-in-out w-full p-3 bg-amber-500 hover:bg-amber-600 text-white">Log In</button>
                     </div>
                     <div className="login-button mt-3 w-full">
-                        <button className="transition ease-in-out hover:text-amber-600 w-full p-3 text-amber-500">Sign Up</button>
+                        <Link to={'/signup'}><button className="transition ease-in-out hover:text-amber-600 w-full p-3 text-amber-500">Sign Up</button></Link>
                     </div>
                 </form>
 
