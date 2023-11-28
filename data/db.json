@@ -1,0 +1,39 @@
+{
+  "profiles": [
+    {
+      "id": 1,
+      "email": "jan@example.com",
+      "username": "jkowalski",
+      "password": "qwerty"
+    },
+    {
+      "id": 2,
+      "email": "zofia@example.com",
+      "username": "zkowalska",
+      "password": "qwerty"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "title": "Something (for jkowalski)",
+      "description": "Do something bro...",
+      "expire": "01/01/2024"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "title": "Something (for zkowalska)",
+      "description": "Do something bro...",
+      "expire": "01/01/2024"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "title": "Something (for jkowalski)",
+      "description": "Do something bro...",
+      "expire": "01/01/2024"
+    }
+  ]
+}

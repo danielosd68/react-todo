@@ -7,11 +7,13 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
+    "db-start": "yarn json-server --watch ./data/db.json",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "autoprefixer": "^10.4.16",
+    "json-server": "^0.17.4",
     "postcss": "^8.4.31",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
