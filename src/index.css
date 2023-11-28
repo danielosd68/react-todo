@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;700&family=Roboto&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    font-family: 'Comfortaa', sans-serif;
+}
+
+input:focus{
+    outline: none;
+}
+
+*::selection{
+    background: #fcd492;
+}
