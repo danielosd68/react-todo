@@ -1,17 +1,18 @@
 import {createBrowserRouter} from "react-router-dom";
-import Login from "../Views/Login/Login.tsx";
 import Signup from "../Views/Signup/Signup.tsx";
+import Index from "../Views/Index.tsx";
 
 class Routes{
     public appRouter() {
         return createBrowserRouter([{
             path: "/",
-            element: <Login />
+            element: <Index />
         },
             {
                 path: "/signup",
                 element: <Signup />
-            }]);
+            }
+        ]);
     }
 }
 

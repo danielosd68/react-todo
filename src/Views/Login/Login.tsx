@@ -1,9 +1,13 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = (props: any) => {
     //@ts-ignore
     const [badLogin, setStateOfLogin] = useState(false);
+    const [username, setUsername] = useState<string | null>(null);
+    const [password, setPassword] = useState<string | null>(null);
+    // const navigate = useNavigate();
+    console.log(props.loginError);
     document.title = "Log In | TODO App";
     return (
         <div className="login w-11/12 ml-auto mr-auto mt-20">
@@ -13,15 +17,25 @@ const LoginPage = () => {
                 <form>
                     <div className="username mb-5 w-full">
                         <label className="text-[#8f8f8f]">Username</label><br/>
-                        <input type="text" name="username" className="mt-3 border-2 w-full p-3" placeholder="Username..."/>
+                        <input onChange={(e) => {
+                            setUsername(e.target.value);
+                        }} type="text" name="username" className="mt-3 border-2 w-full p-3" placeholder="Username..."/>
                     </div>
                     <div className="password w-full">
                         <label className="text-[#8f8f8f]">Password</label><br/>
-                        <input type="password" name="password" className="mt-3 border-2 w-full p-3" placeholder="Password..."/>
+                        <input onChange={(e) => {
+                            setPassword(e.target.value);
+                        }} type="password" name="password" className="mt-3 border-2 w-full p-3" placeholder="Password..."/>
                     </div>
-                    <p className={"text-center mt-5 text-red-500 " + (!badLogin ? " invisible" : "")}>Username or password incorrect...</p>
+                    <p className={"text-center mt-5 text-red-500 " + (props.loginError === false && badLogin === false ? " invisible" : "")}>Username or password incorrect...</p>
                     <div className="login-button mt-5 w-full">
-                        <button className="transition ease-in-out w-full p-3 bg-amber-500 hover:bg-amber-600 text-white">Log In</button>
+                        <button onClick={(e) => {
+                            e.preventDefault();
+                            setStateOfLogin(false);
+
+                            username !== null && password !== null ? props.login(username, password) : setStateOfLogin(true);
+
+                        }} className="transition ease-in-out w-full p-3 bg-amber-500 hover:bg-amber-600 text-white">Log In</button>
                     </div>
                     <div className="login-button mt-3 w-full">
                         <Link to={'/signup'}><button className="transition ease-in-out hover:text-amber-600 w-full p-3 text-amber-500">Sign Up</button></Link>
