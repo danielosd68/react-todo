@@ -26,7 +26,7 @@ const App = (props: any) => {
 
 
             <div className="w-11/12 ml-auto mr-auto mt-20">
-                <table className="table-auto w-full rounded-md">
+                <table className="table-fixed w-full rounded-md text-xs md:text-sm">
                     <thead>
                     <tr className="h-14 bg-gray-400">
                         <th>ID</th>
