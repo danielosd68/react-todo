@@ -23,8 +23,6 @@ const App = (props: any) => {
         console.log(todayTasks);
     }, [tasks]);
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <>
             <div
@@ -37,6 +35,7 @@ const App = (props: any) => {
 
 
             <div className="w-11/12 ml-auto mr-auto mt-20">
+
                 <h1 className="mb-10 text-center text-3xl">Tasks for today!</h1>
                 <table className="table-fixed w-full rounded-md text-xs md:text-sm">
                     <thead>
@@ -49,12 +48,13 @@ const App = (props: any) => {
                     </tr>
                     </thead>
                     {todayTasks ? todayTasks.map((task: {
+                        done: boolean;
                         id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         expire: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                     }, id: number) => (
-                        <tr key={id} className="h-12 border-t-2 border-t-gray-200 hover:bg-gray-300">
+                        <tr key={id} className={"h-12 border-t-2 border-t-gray-200 hover:bg-gray-300"}>
                             <td className="pl-5 pr-5">{id + 1}</td>
                             <td className="pl-5 pr-5">{task.title}</td>
                             <td className="pl-5 pr-5">{task.description}</td>
@@ -79,18 +79,19 @@ const App = (props: any) => {
                     </tr>
                     </thead>
                     {tasks ? tasks.map((task: {
+                        done: boolean;
                         id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         expire: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                     }, id: number) => (
-                        <tr key={id} className="h-12 border-t-2 border-t-gray-200 hover:bg-gray-300">
+                        <tr key={id} className={"h-12 border-t-2 border-t-gray-200 hover:bg-gray-300" + (task.done ? " opacity-25" : "")}>
                             <td className="pl-5 pr-5">{id + 1}</td>
                             <td className="pl-5 pr-5">{task.title}</td>
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
                             <td className="pl-5 pr-5 text-center text-xl">
-                                <button className="ml-auto mr-auto">Do it!</button>
+                                <button disabled={task.done} className="ml-auto mr-auto">Do it!</button>
                             </td>
                         </tr>
                     )) : "Null"}

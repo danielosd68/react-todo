@@ -79,6 +79,17 @@ class Auth{
         })
 
     }
+
+    // public setTaskAsDone(task){
+    //     let tasks;
+    //     fetch('http://localhost:3000/tasks')
+    //         .then((response) => {
+    //             response.json()
+    //                 .then((data) => {
+    //                     tasks = data;
+    //                 })
+    //         })
+    // }
 }
 
 const auth = new Auth();
