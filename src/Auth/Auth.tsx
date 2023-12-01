@@ -46,6 +46,39 @@ class Auth{
                 })
         });
     }
+
+    public getTodayTasks(tasks: any){
+        return new Promise((resolve, reject) => {
+            const todayDate = new Date();
+            let day = String(todayDate.getDate());
+            let month = String(todayDate.getMonth() + 1);
+            let year = String(todayDate.getFullYear());
+
+            if(day < "10"){
+                day = "0" + day;
+            }
+            if(month < "10"){
+                month = "0" + month;
+            }
+
+            let date = day + "/" + month + "/" + year;
+
+            console.log(date);
+
+
+            if(tasks !== null){
+                console.log(tasks);
+                // @ts-ignore
+                const todayTasks = tasks.filter((task) => task.expire === date && !task.done);
+                console.log(todayTasks);
+                resolve(todayTasks);
+            }
+            else{
+                reject();
+            }
+        })
+
+    }
 }
 
 const auth = new Auth();

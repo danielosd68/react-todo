@@ -19,21 +19,32 @@
       "user_id": 1,
       "title": "Something (for jkowalski)",
       "description": "Do something bro...",
-      "expire": "01/01/2024"
+      "expire": "01/01/2024",
+      "done": false
     },
     {
       "id": 2,
       "user_id": 2,
       "title": "Something (for zkowalska)",
       "description": "Do something bro...",
-      "expire": "01/01/2024"
+      "expire": "01/01/2024",
+      "done": false
     },
     {
       "id": 3,
       "user_id": 1,
       "title": "Something (for jkowalski)",
       "description": "Do something bro...",
-      "expire": "01/01/2024"
+      "expire": "01/01/2024",
+      "done": false
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "title": "Something (for jkowalski)",
+      "description": "Do something bro... NOW!",
+      "expire": "01/12/2023",
+      "done": false
     }
   ]
 }
