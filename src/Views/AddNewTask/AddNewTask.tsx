@@ -31,7 +31,8 @@ const AddNewTask = () => {
             user_id: localStorage.getItem('id'),
             title: title,
             description: content,
-            expire: expireDate
+            expire: expireDate,
+            done: false
         }
 
         auth.addTask(task)
