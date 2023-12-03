@@ -1,5 +1,6 @@
 import {JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState} from "react";
 import auth from "../../Auth/Auth.tsx";
+import {Link} from "react-router-dom";
 
 
 const App = (props: any) => {
@@ -15,12 +16,10 @@ const App = (props: any) => {
     }, []);
 
     useEffect(() => {
-        // console.log(tasks);
         auth.getTodayTasks(tasks)
             // @ts-ignore
             .then(data => setTodayTasks(data))
             .catch(reason => console.log(reason));
-        console.log(todayTasks);
     }, [tasks]);
 
     return (
@@ -30,14 +29,18 @@ const App = (props: any) => {
                 <h1 className="">TODO App</h1>
                 <button className="text-lg" onClick={() => {
                     props.logout();
-                }}>Wyloguj {localStorage.getItem('username')}</button>
+                }}>Log out {localStorage.getItem('username')}</button>
             </div>
 
 
             <div className="w-11/12 ml-auto mr-auto mt-20">
-
+                <div className="text-end">
+                    <Link to={'/add-task'}>
+                        <button className="bg-orange-500 p-3 w-48 rounded-md text-white hover:bg-orange-700 transition-all ">Add new task</button>
+                    </Link>
+                </div>
                 <h1 className="mb-10 text-center text-3xl">Tasks for today!</h1>
-                <table className="table-fixed w-full rounded-md text-xs md:text-sm">
+                <table className={"table-fixed w-full rounded-md text-xs md:text-sm" + (todayTasks === null || todayTasks.length === 0 ? " hidden" : "")}>
                     <thead>
                     <tr className="h-14 bg-gray-400">
                         <th>ID</th>
@@ -47,7 +50,7 @@ const App = (props: any) => {
                         <th>Action</th>
                     </tr>
                     </thead>
-                    {todayTasks ? todayTasks.map((task: {
+                    {todayTasks && todayTasks.length > 0 ? todayTasks.map((task: {
                         done: boolean;
                         id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
@@ -63,12 +66,13 @@ const App = (props: any) => {
                                 <button className="ml-auto mr-auto">Do it!</button>
                             </td>
                         </tr>
-                    )) : "No tasks for today!"}
+                    )) : ""
+                    }
                 </table>
-
+                <p className={!(todayTasks === null || todayTasks.length === 0) ? "hidden" : "text-center text-gray-400"}>No tasks for today!</p>
 
                 <h1 className="mt-10 mb-10 text-center text-3xl">All tasks</h1>
-                <table className="table-fixed w-full rounded-md text-xs md:text-sm">
+                <table className={"table-fixed w-full rounded-md text-xs md:text-sm" + (tasks === null ? " hidden" : "")}>
                     <thead>
                     <tr className="h-14 bg-gray-400">
                         <th>ID</th>
@@ -78,7 +82,7 @@ const App = (props: any) => {
                         <th>Action</th>
                     </tr>
                     </thead>
-                    {tasks ? tasks.map((task: {
+                    {tasks && tasks.length > 0 ? tasks.map((task: {
                         done: boolean;
                         id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;

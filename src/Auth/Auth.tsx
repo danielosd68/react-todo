@@ -50,14 +50,17 @@ class Auth{
     public getTodayTasks(tasks: any){
         return new Promise((resolve, reject) => {
             const todayDate = new Date();
-            let day = String(todayDate.getDate());
-            let month = String(todayDate.getMonth() + 1);
-            let year = String(todayDate.getFullYear());
+            let day: string = String(todayDate.getDate());
+            let month: string = String(todayDate.getMonth() + 1);
+            let year: number = todayDate.getFullYear();
 
-            if(day < "10"){
+            // @ts-ignore
+            if(day < 10){
                 day = "0" + day;
             }
-            if(month < "10"){
+
+            // @ts-ignore
+            if(month < 10){
                 month = "0" + month;
             }
 
@@ -80,16 +83,20 @@ class Auth{
 
     }
 
-    // public setTaskAsDone(task){
-    //     let tasks;
-    //     fetch('http://localhost:3000/tasks')
-    //         .then((response) => {
-    //             response.json()
-    //                 .then((data) => {
-    //                     tasks = data;
-    //                 })
-    //         })
-    // }
+    public addTask(task: any){
+        return new Promise((resolve, reject) => {
+            fetch('http://localhost:3000/tasks', {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(task)
+            })
+                .then((response) => resolve(response))
+                .catch((reason) => reject(reason));
+        })
+    }
+
 }
 
 const auth = new Auth();
