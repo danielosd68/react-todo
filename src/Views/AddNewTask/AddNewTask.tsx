@@ -4,7 +4,7 @@ import auth from "../../Auth/Auth.tsx";
 
 const AddNewTask = () => {
     const navigate = useNavigate();
-    document.title = "Add new task | TODO App";
+    document.title = "Dodaj nowe zadanie! | TODO - Domu 🏠";
     const [title, setTitle] = useState<string>("");
     const [content, setContent] = useState<string>("");
     const [expire, setExpire] = useState<string>("");
@@ -45,35 +45,35 @@ const AddNewTask = () => {
     return (
         <div className="mt-16 ml-5 mr-5 md:ml-40 md:mr-40">
             <div className="text-end">
-                <Link to={'/'}><button className="border-2 border-orange-500 p-3 w-48 rounded-md hover:bg-orange-500 hover:text-white transition-all">Close</button></Link>
+                <Link to={'/'}><button className="border-2 border-orange-500 p-3 w-72 rounded-md hover:bg-orange-500 hover:text-white transition-all">Wróc do wszystkich zadań</button></Link>
             </div>
 
             <div className="text-center mt-16">
-                <h1 className="text-4xl">Add new task!</h1>
+                <h1 className="text-4xl">Dodaj nowe zadanie!</h1>
             </div>
 
             <form>
                 <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
                     <div className="w-full md:w-1/4 pl-10 pr-10 flex items-center justify-center md:justify-end">
-                        <p className="font-bold">Title</p>
+                        <p className="font-bold">Tytuł</p>
                     </div>
                     <div className="w-full md:w-3/4 md:pl-10 md:pr-10 mt-3 md:mt-0">
-                        <input onChange={(e) => setTitle(e.target.value)} className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" type="text" name="title" id="title" placeholder="Title..."/>
+                        <input onChange={(e) => setTitle(e.target.value)} className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" type="text" name="title" id="title" placeholder="Tytuł..."/>
                     </div>
                 </div>
 
                 <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
                     <div className="w-full md:w-1/4 pl-10 pr-10 flex items-center justify-center md:justify-end">
-                        <p className="font-bold">Description</p>
+                        <p className="font-bold">Opis zadania</p>
                     </div>
                     <div className="w-full md:w-3/4 md:pl-10 md:pr-10 mt-3 md:mt-0">
-                        <textarea onChange={(e) => setContent(e.target.value)} name="description" id="description" className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" placeholder="Content..."></textarea>
+                        <textarea onChange={(e) => setContent(e.target.value)} name="description" id="description" className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" placeholder="Opis..."></textarea>
                     </div>
                 </div>
 
                 <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
                     <div className="w-full md:w-1/4 md:pl-10 md:pr-10 flex items-center justify-center md:justify-end">
-                        <p className="font-bold">Expire day</p>
+                        <p className="font-bold">Termin</p>
                     </div>
                     <div className="w-full md:w-3/4 pl-10 pr-10 mt-3 md:mt-0">
                         <input className="w-full" onChange={(e) => setExpire(e.target.value)} type="date" name="" id=""/>
@@ -81,10 +81,10 @@ const AddNewTask = () => {
                 </div>
 
                 <div className="form flex pt-10 pb-10 pr-10 pl-10 justify-center">
-                    <button onClick={addTask} className="bg-orange-500 p-3 w-48 rounded-md text-white hover:bg-orange-700 transition-all ">Add new task</button>
+                    <button onClick={addTask} className="bg-orange-500 p-3 w-60 rounded-md text-white hover:bg-orange-700 transition-all ">Dodaj nowe zadanie</button>
                 </div>
 
-                <p className={"text-center text-red-500" + (!error ? " hidden" : "")}>Upload error...</p>
+                <p className={"text-center text-red-500" + (!error ? " hidden" : "")}>Błąd dodawania na serwer...</p>
             </form>
         </div>
     )
