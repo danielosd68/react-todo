@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import auth from "../../Auth/Auth.tsx";
 
 const AddNewTask = () => {
@@ -10,6 +10,11 @@ const AddNewTask = () => {
     const [expire, setExpire] = useState<string>("");
     const [error, setError] = useState<boolean>(false);
 
+    useEffect(() => {
+        if(localStorage.getItem('id') === null){
+            navigate('/');
+        }
+    }, []);
     const addTask = (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -48,34 +53,34 @@ const AddNewTask = () => {
             </div>
 
             <form>
-                <div className="form flex pt-10 pb-10 pr-10 border-b-2 border-b-gray-200">
-                    <div className="w-1/4 pl-10 pr-10 flex items-center justify-end">
+                <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
+                    <div className="w-full md:w-1/4 pl-10 pr-10 flex items-center justify-center md:justify-end">
                         <p className="font-bold">Title</p>
                     </div>
-                    <div className="w-3/4 pl-10 pr-10">
+                    <div className="w-full md:w-3/4 md:pl-10 md:pr-10 mt-3 md:mt-0">
                         <input onChange={(e) => setTitle(e.target.value)} className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" type="text" name="title" id="title" placeholder="Title..."/>
                     </div>
                 </div>
 
-                <div className="form flex pt-10 pb-10 pr-10 border-b-2 border-b-gray-200">
-                    <div className="w-1/4 pl-10 pr-10 flex items-center justify-end">
+                <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
+                    <div className="w-full md:w-1/4 pl-10 pr-10 flex items-center justify-center md:justify-end">
                         <p className="font-bold">Description</p>
                     </div>
-                    <div className="w-3/4 pl-10 pr-10">
+                    <div className="w-full md:w-3/4 md:pl-10 md:pr-10 mt-3 md:mt-0">
                         <textarea onChange={(e) => setContent(e.target.value)} name="description" id="description" className="border-2 border-gray-200 pl-3 pr-3 pt-2 pb-2 w-full" placeholder="Content..."></textarea>
                     </div>
                 </div>
 
-                <div className="form flex pt-10 pb-10 pr-10 border-b-2 border-b-gray-200">
-                    <div className="w-1/4 pl-10 pr-10 flex items-center justify-end">
+                <div className="form flex flex-col md:flex-row pt-10 pb-10 pr-10 pl-10 border-b-2 border-b-gray-200">
+                    <div className="w-full md:w-1/4 md:pl-10 md:pr-10 flex items-center justify-center md:justify-end">
                         <p className="font-bold">Expire day</p>
                     </div>
-                    <div className="w-3/4 pl-10 pr-10">
-                        <input onChange={(e) => setExpire(e.target.value)} type="date" name="" id=""/>
+                    <div className="w-full md:w-3/4 pl-10 pr-10 mt-3 md:mt-0">
+                        <input className="w-full" onChange={(e) => setExpire(e.target.value)} type="date" name="" id=""/>
                     </div>
                 </div>
 
-                <div className="form flex pt-10 pb-10 pr-10 justify-center">
+                <div className="form flex pt-10 pb-10 pr-10 pl-10 justify-center">
                     <button onClick={addTask} className="bg-orange-500 p-3 w-48 rounded-md text-white hover:bg-orange-700 transition-all ">Add new task</button>
                 </div>
 

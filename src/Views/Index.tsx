@@ -19,8 +19,10 @@ const Index = () => {
 
     const logout = () => {
         localStorage.removeItem('username');
+        localStorage.removeItem('id');
         setType("login");
     }
+
 
 
     useEffect(() => {

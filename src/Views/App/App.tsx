@@ -7,11 +7,18 @@ const App = (props: any) => {
     document.title = "Welcome! | TODO App";
     const [tasks, setTasks] = useState<any>(null);
     const [todayTasks, setTodayTasks] = useState<any>(null);
+
     useEffect(() => {
-        auth.getTasks(Number(localStorage.getItem('id')))
-            // @ts-ignore
-            .then(data => setTasks(data))
-            .catch(reason => console.log(reason));
+        if(localStorage.getItem('id') !== null){
+            auth.getTasks(Number(localStorage.getItem('id')))
+                // @ts-ignore
+                .then(data => setTasks(data))
+                .catch(reason => console.log(reason));
+        }
+        else{
+            props.logout();
+        }
+
 
     }, []);
 
@@ -39,7 +46,7 @@ const App = (props: any) => {
                         <button className="bg-orange-500 p-3 w-48 rounded-md text-white hover:bg-orange-700 transition-all ">Add new task</button>
                     </Link>
                 </div>
-                <h1 className="mb-10 text-center text-3xl">Tasks for today!</h1>
+                <h1 className="mb-10 mt-10 text-center text-3xl">Tasks for today!</h1>
                 <table className={"table-fixed w-full rounded-md text-xs md:text-sm" + (todayTasks === null || todayTasks.length === 0 ? " hidden" : "")}>
                     <thead>
                     <tr className="h-14 bg-gray-400">
@@ -62,7 +69,7 @@ const App = (props: any) => {
                             <td className="pl-5 pr-5">{task.title}</td>
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
-                            <td className="pl-5 pr-5 text-center text-xl">
+                            <td className="pl-5 pr-5 text-center md:text-xl">
                                 <button className="ml-auto mr-auto">Do it!</button>
                             </td>
                         </tr>
@@ -94,7 +101,7 @@ const App = (props: any) => {
                             <td className="pl-5 pr-5">{task.title}</td>
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
-                            <td className="pl-5 pr-5 text-center text-xl">
+                            <td className="pl-5 pr-5 text-center md:text-xl">
                                 <button disabled={task.done} className="ml-auto mr-auto">Do it!</button>
                             </td>
                         </tr>
