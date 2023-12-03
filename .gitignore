@@ -149,3 +149,4 @@ dist-ssr
 *.sln
 *.sw?
 >>>>>>> 6c3ff68 (Init new project - React TODO)
+/data/
