@@ -8,5 +8,5 @@ Access data:
    Password: qwerty
 
 1) Install node.js and NPM
-3) Run `npm db-start`
+3) Run `npm run db-start`
 4) Run `npm start`
