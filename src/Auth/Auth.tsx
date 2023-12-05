@@ -97,6 +97,23 @@ class Auth{
         })
     }
 
+    public setTaskAsDone(id: number){
+        return new Promise((resolve, reject) => {
+            fetch(`http://localhost:3000/tasks/${id}`, {
+                method: "PUT",
+                body: JSON.stringify({
+
+                })
+            })
+                .then((response) => {
+                    resolve(response);
+                })
+                .catch((reason) => {
+                    reject(reason);
+                })
+        })
+    }
+
 }
 
 const auth = new Auth();

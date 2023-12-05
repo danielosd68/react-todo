@@ -15,12 +15,7 @@
   ],
   "tasks": [
     {
-      "id": 1,
-      "user_id": 1,
-      "title": "Something (for jkowalski)",
-      "description": "Do something bro...",
-      "expire": "01/01/2024",
-      "done": false
+      "id": 1
     },
     {
       "id": 2,
@@ -31,20 +26,16 @@
       "done": false
     },
     {
-      "id": 3,
-      "user_id": 1,
-      "title": "Something (for jkowalski)",
-      "description": "Do something bro...",
-      "expire": "01/01/2024",
-      "done": false
+      "id": 3
     },
     {
-      "id": 4,
-      "user_id": 1,
-      "title": "Something (for jkowalski)",
-      "description": "Do something bro... NOW!",
-      "expire": "01/12/2023",
-      "done": false
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
     }
   ]
 }

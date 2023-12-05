@@ -7,6 +7,7 @@ const App = (props: any) => {
     document.title = "Wszystkie zadania | TODO App";
     const [tasks, setTasks] = useState<any>(null);
     const [todayTasks, setTodayTasks] = useState<any>(null);
+    const [refresh, setRefresh] = useState(false);
 
     useEffect(() => {
         if(localStorage.getItem('id') !== null){
@@ -21,6 +22,27 @@ const App = (props: any) => {
 
 
     }, []);
+
+    useEffect(() => {
+        if(refresh){
+            auth.getTasks(Number(localStorage.getItem('id')))
+                // @ts-ignore
+                .then(data => setTasks(data))
+                .catch(reason => console.log(reason))
+                .finally(() => {
+                    setRefresh(false);
+                });
+
+
+            auth.getTodayTasks(tasks)
+                // @ts-ignore
+                .then(data => setTodayTasks(data))
+                .catch(reason => console.log(reason))
+                .finally(() => {
+                    setRefresh(false);
+                })
+        }
+    }, [refresh]);
 
     useEffect(() => {
         auth.getTodayTasks(tasks)
@@ -59,7 +81,7 @@ const App = (props: any) => {
                     </thead>
                     {todayTasks && todayTasks.length > 0 ? todayTasks.map((task: {
                         done: boolean;
-                        id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
+                        id: number;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         expire: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
@@ -70,7 +92,7 @@ const App = (props: any) => {
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
                             <td className="pl-5 pr-5 text-center md:text-xl">
-                                <button className="ml-auto mr-auto">Oznacz jako wykonane!</button>
+                                <button onClick={() => {auth.setTaskAsDone(task.id); setRefresh(true);}} className="ml-auto mr-auto">Oznacz jako wykonane!</button>
                             </td>
                         </tr>
                     )) : ""
@@ -91,7 +113,7 @@ const App = (props: any) => {
                     </thead>
                     {tasks && tasks.length > 0 ? tasks.map((task: {
                         done: boolean;
-                        id: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
+                        id: number;
                         title: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         description: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
                         expire: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined;
@@ -102,7 +124,7 @@ const App = (props: any) => {
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
                             <td className="pl-5 pr-5 text-center md:text-xl">
-                                <button disabled={task.done} className="ml-auto mr-auto">Oznacz jako wykonane!</button>
+                                <button disabled={task.done} onClick={() => {auth.setTaskAsDone(task.id); setRefresh(true)}} className="ml-auto mr-auto">Oznacz jako wykonane!</button>
                             </td>
                         </tr>
                     )) : "Brak zadań"}
