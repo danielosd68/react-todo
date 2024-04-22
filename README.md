@@ -5,7 +5,7 @@
    2. React
    3. Tailwind CSS - app stylesheets
    4. json-server - for data storage
-   5. React Router - for app routes
+   5. React Router - for app routes 
 
 ## 🤔 Access data 🤔:
 1. Username: jkowalski
