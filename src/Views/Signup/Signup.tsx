@@ -1,10 +1,13 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import auth from "../../Auth/Auth.tsx";
 
-const SignupPage = () => {
+
+const SignupPage = (props) => {
     document.title = "Logowanie | TODO - Domu 🏠";
     const [badSignupData, setBadData] = useState<boolean>(false);
     const [signupData, setSignupData] = useState({});
+    const navigate = useNavigate();
 
     const handleInputChange = (event: { target: { value: any; name: any; }; }) => {
         setSignupData((prevState) => {
@@ -20,7 +23,13 @@ const SignupPage = () => {
         //@ts-ignore
         if(signupData.password === signupData.passwordConfirmed){
             alert('ok data');
+            auth.signIn(signupData).then((response) => {
+                if(response.info === "user already exists"){
+                    alert('Użytkownik istnieje!');
+                    navigate('/');
+                }
 
+            })
         }
         else{
             setBadData(true);

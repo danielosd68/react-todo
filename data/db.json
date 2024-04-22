@@ -11,6 +11,13 @@
       "email": "zofia@example.com",
       "username": "zkowalska",
       "password": "qwerty"
+    },
+    {
+      "username": "dd",
+      "email": "dd",
+      "password": "dd",
+      "passwordConfirmed": "dd",
+      "id": 3
     }
   ],
   "tasks": [

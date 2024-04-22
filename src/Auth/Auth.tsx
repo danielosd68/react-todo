@@ -6,7 +6,7 @@ class Auth{
                 response.json()
                     .then((data) => {
                         if(data.length === 0){
-                           reject(false);
+                           reject({info: 'user does not exists'});
                         }
                         else{
                             if(data[0].password === password){
@@ -26,6 +26,35 @@ class Auth{
                     })
             })
 
+        })
+    }
+
+    public signIn(user){
+        return new Promise((resolve, reject) => {
+            this.logIn(user.username, user.password)
+                .then((response) => {
+                resolve({info: 'user already exists'});
+
+            }).catch((reason) => {
+                if(reason.info === 'user does not exists'){
+                    fetch('http://localhost:3000/profiles', {
+                        method: 'post',
+                        headers: {
+                            'Content-Type': 'Application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(() => {
+                            this.logIn(user.username, user.password).then(() => {
+                                resolve(null);
+                            })
+
+                        })
+                        .catch(() => {
+                            reject();
+                        })
+                }
+            })
         })
     }
 
