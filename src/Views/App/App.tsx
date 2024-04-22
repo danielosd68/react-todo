@@ -124,7 +124,7 @@ const App = (props: any) => {
                             <td className="pl-5 pr-5">{task.description}</td>
                             <td className="pl-5 pr-5">{task.expire}</td>
                             <td className="pl-5 pr-5 text-center md:text-xl">
-                                <button disabled={task.done} onClick={() => {auth.setTaskAsDone(task.id); setRefresh(true)}} className="ml-auto mr-auto">Oznacz jako wykonane!</button>
+                                <button disabled={task.done} onClick={() => {auth.setTaskAsDone(task.id); setRefresh(true)}} className="ml-auto mr-auto border border-black p-3 rounded-md my-2 text-[16px]">Oznacz jako wykonane!</button>
                             </td>
                         </tr>
                     )) : "Brak zadań"}
